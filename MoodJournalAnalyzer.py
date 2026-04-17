@@ -2,7 +2,7 @@ from textblob import TextBlob
 import streamlit as st
 
 # Draw a title and some text to the app:
-
+title = st.title("Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentance about your day: ", placeholder="How was your day?")
 blob = TextBlob(text)
