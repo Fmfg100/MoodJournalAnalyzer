@@ -1,6 +1,31 @@
 from textblob import TextBlob
+port streamlit as st
 
-text = input("Please enter a sentance about your day: ")
+# Draw a title and some text to the app:
+'''
+# This is the document title
+
+This is some _markdown_.
+'''
+
+import pandas as pd
+df = pd.DataFrame({'col1': [1,2,3]})
+df  # 👈 Draw the dataframe
+
+x = 10
+'x', x  # 👈 Draw the string 'x' and then the value of x
+
+# Also works with most supported chart types
+import matplotlib.pyplot as plt
+import numpy as np
+
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
+
+fig  # 👈 Draw a Matplotlib chart
+
+text = st.text_input("Please enter a sentance about your day: ", placeholder="How was your day?")
 blob = TextBlob(text)
 sentiment = blob.sentiment.polarity
 
