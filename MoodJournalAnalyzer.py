@@ -5,7 +5,7 @@ import emoji
 title = st.title("Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
-blob = TextBlob(text)
+blob = TextBlob(emoji.demojize(text))
 sentiment = blob.sentiment.polarity
 
 if sentiment > 0.1:
