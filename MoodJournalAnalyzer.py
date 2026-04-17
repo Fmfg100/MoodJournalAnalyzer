@@ -1,6 +1,6 @@
 from textblob import TextBlob
 import streamlit as st
-
+import emoji
 # Draw a title and some text to the app:
 title = st.title("Mood Journal Analyzer!")
 
