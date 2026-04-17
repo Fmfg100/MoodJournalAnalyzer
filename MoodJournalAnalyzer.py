@@ -1,11 +1,10 @@
 from textblob import TextBlob
 import streamlit as st
-import emoji
 # Draw a title and some text to the app:
 title = st.title("Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
-blob = TextBlob(emoji.demojize(text))
+blob = TextBlob(text)
 sentiment = blob.sentiment.polarity
 
 if sentiment > 0.1:
