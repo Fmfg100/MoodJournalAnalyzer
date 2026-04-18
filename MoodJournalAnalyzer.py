@@ -21,12 +21,12 @@ def changed():
     
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
-text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", onchange=changed())
-text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", onchange=changed())
-text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", onchange=changed())
-text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4", onchange=changed())
-text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5", onchange=changed())
-text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6", onchange=changed())
+text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", on_change=changed())
+text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", on_change=changed())
+text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", on_change=changed())
+text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4", on_change=changed())
+text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5", on_change=changed())
+text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6", on_change=changed())
 blob = TextBlob(text)
 blob1 = TextBlob(text1)
 blob2 = TextBlob(text2)
