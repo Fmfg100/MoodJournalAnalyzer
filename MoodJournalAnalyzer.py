@@ -17,7 +17,6 @@ blob3 = TextBlob(text3)
 blob4 = TextBlob(text4)
 blob5 = TextBlob(text5)
 blob6 = TextBlob(text6)
-time.sleep(8)
 sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
 sentiment = sentimentaverage
 
