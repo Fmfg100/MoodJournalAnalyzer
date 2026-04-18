@@ -31,3 +31,7 @@ if sentiment > 0.1:
 if sentiment < -0.1:
     score = sentiment * -100
     st.write(f"Your week is {score:.1f}% Negative")
+if sentiment > 7
+print("Your week is ")
+else:
+    print("Your day is ")
