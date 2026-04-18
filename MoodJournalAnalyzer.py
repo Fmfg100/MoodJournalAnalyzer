@@ -22,7 +22,7 @@ def changed():
         counter = 0
     
 
-text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", on_change=changed)
 text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", on_change=changed)
 text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", on_change=changed)
 text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", on_change=changed)
