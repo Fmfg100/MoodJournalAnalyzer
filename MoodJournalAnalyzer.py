@@ -44,5 +44,3 @@ if sentiment > 0.1:
 if sentiment < -0.1:
     score = sentiment * -100
     st.write(f"Your week is {score:.1f}% Negative")
-sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
-sentiment = sentimentaverage
