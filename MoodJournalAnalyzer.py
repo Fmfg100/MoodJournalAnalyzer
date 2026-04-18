@@ -25,12 +25,12 @@ blob6 = TextBlob(text6)
 all_blobs = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
 
 for b in all_blobs:
-    day_score = b.sentiment.polarity
+    day = b.sentiment.polarity
     # Very simple if conditions
-    if day_score > 0.1:
-        st.write(f"Your day is {day_score * 100:.1f}% Positive")
+    if day > 0.1:
+        st.write(f"Your day is {day * 100:.1f}% Positive")
     elif day_score < -0.1:
-        st.write(f"Your day is {day_score * -100:.1f}% Negative")
+        st.write(f"Your day is {day * -100:.1f}% Negative")
     else:
         st.write("Your day is Neutral")
 
