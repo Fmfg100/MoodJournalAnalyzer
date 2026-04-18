@@ -22,9 +22,9 @@ blob6 = TextBlob(text6)
 
 # --- DAILY ANALYSIS SECTION ---
 # This part handles the "Your day is..." for every input
-all_blobs = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
+all_blobs_together = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
 
-for b in all_blobs:
+for b in all_blobs_together:
     day = b.sentiment.polarity
     # Very simple if conditions
     if day > 0.1:
