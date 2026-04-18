@@ -4,8 +4,22 @@ import streamlit as st
 title = st.title("Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
+text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
 blob = TextBlob(text)
-sentiment = blob.sentiment.polarity
+blob1 = TextBlob(text1)
+blob2 = TextBlob(text2)
+blob3 = TextBlob(text3)
+blob4 = TextBlob(text4)
+blob5 = TextBlob(text5)
+blob6 = TextBlob(text6)
+sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
+sentiment = sentimentaverage
+
 
 if sentiment > 0.1:
     st.write("Positive")
