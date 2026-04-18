@@ -31,7 +31,7 @@ if sentiment < -0.1:
     score = sentiment * -100
     st.write(f"Your day is {score:.1f}% Negative")
 sentiment = sentimentaverage
-title = st.title("Your week is ")
+subtitle = st.subtitle("Your week is ")
 sentiment = sentimentaverage
 if sentiment > 0.1:
     st.write("Positive")
