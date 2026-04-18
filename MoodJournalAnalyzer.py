@@ -20,7 +20,7 @@ def changed():
             score = sentiment * -100
         st.write(f"Your week is {score:.1f}% Negative")
         counter = 0
-def day(blob, daynumber)
+def day(blob, daynumber):
     if blob > 0.1:
         st.write(f"Your " + daynumber + " day is {blob * 100:.1f}%" + " Positive")
     if blob < -0.1:
