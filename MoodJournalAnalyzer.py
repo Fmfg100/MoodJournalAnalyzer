@@ -6,6 +6,7 @@ counter = 0
 def changed():
     global counter 
     counter += 1
+    print("changed!")
     if counter == 7:
         if sentiment > 0.1:
             st.write("Positive")
