@@ -45,10 +45,10 @@ elif sentiment >= -0.1:
 else:
     st.write("Negative")
 if sentiment > 0.1:
-    st.write(f"Your day is {sentimentaverage * 100:.1f}%" + " Positive")
+    st.write(f"Your week so far is {sentimentaverage * 100:.1f}%" + " Positive")
 if sentiment < -0.1:
     score = sentiment * -100
-    st.write(f"Your day is {score:.1f}% Negative")
+    st.write(f"Your week so far is {score:.1f}% Negative")
 sentiment = sentimentaverage
 title = st.title("Your week is ")
 sentiment = sentimentaverage
