@@ -29,7 +29,7 @@ for b in all_blobs:
     # Very simple if conditions
     if day > 0.1:
         st.write(f"Your day is {day * 100:.1f}% Positive")
-    elif day_score < -0.1:
+    elif day < -0.1:
         st.write(f"Your day is {day * -100:.1f}% Negative")
     else:
         st.write("Your day is Neutral")
