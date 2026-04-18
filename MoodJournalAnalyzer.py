@@ -20,17 +20,6 @@ blob6 = TextBlob(text6)
 sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
 
 sentiment = sentimentaverage
-if sentiment > 0.1:
-    st.write("Positive")
-elif sentiment >= -0.1:
-    st.write("Neutral")
-else:
-    st.write("Negative")
-if sentiment > 0.1:
-    st.write(f"Your day is {sentimentaverage * 100:.1f}%" + " Positive")
-if sentiment < -0.1:
-    score = sentiment * -100
-    st.write(f"Your day is {score:.1f}% Negative")
 title = st.title("Your week is ")
 sentiment = sentimentaverage
 if sentiment > 0.1:
