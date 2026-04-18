@@ -19,8 +19,6 @@ blob5 = TextBlob(text5)
 blob6 = TextBlob(text6)
 sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
 sentiment = sentimentaverage
-
-
 if sentiment > 0.1:
     st.write("Positive")
 elif sentiment >= -0.1:
