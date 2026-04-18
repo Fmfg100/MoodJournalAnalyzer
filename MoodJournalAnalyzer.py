@@ -4,7 +4,7 @@ import streamlit as st
 title = st.title("Mood Journal Analyzer!")
 counter = 0
 def changed():
-    counter += 1
+    global counter += 1
     if counter == 7:
         if sentiment > 0.1:
             st.write("Positive")
