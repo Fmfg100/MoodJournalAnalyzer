@@ -2,14 +2,31 @@ from textblob import TextBlob
 import streamlit as st
 # Draw a title and some text to the app:
 title = st.title("Mood Journal Analyzer!")
+counter = 0
+def changed():
+    counter += 1
+    if counter == 7:
+        if sentiment > 0.1:
+            st.write("Positive")
+        elif sentiment >= -0.1:
+            st.write("Neutral")
+        else:
+            st.write("Negative")
+        if sentiment > 0.1:
+            st.write(f"Your week is {sentimentaverage * 100:.1f}%" + " Positive")
+        if sentiment < -0.1:
+            score = sentiment * -100
+        st.write(f"Your week is {score:.1f}% Negative")
+        counter = 0
+    
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
-text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1")
-text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2")
-text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3")
-text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4")
-text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5")
-text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6")
+text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", onchange=changed())
+text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", onchange=changed())
+text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", onchange=changed())
+text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4", onchange=changed())
+text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5", onchange=changed())
+text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6", onchange=changed())
 blob = TextBlob(text)
 blob1 = TextBlob(text1)
 blob2 = TextBlob(text2)
@@ -33,14 +50,4 @@ if sentiment < -0.1:
 sentiment = sentimentaverage
 title = st.title("Your week is ")
 sentiment = sentimentaverage
-if sentiment > 0.1:
-    st.write("Positive")
-elif sentiment >= -0.1:
-    st.write("Neutral")
-else:
-    st.write("Negative")
-if sentiment > 0.1:
-    st.write(f"Your week is {sentimentaverage * 100:.1f}%" + " Positive")
-if sentiment < -0.1:
-    score = sentiment * -100
-    st.write(f"Your week is {score:.1f}% Negative")
+
