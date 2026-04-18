@@ -20,21 +20,25 @@ def changed():
             score = sentiment * -100
         st.write(f"Your week is {score:.1f}% Negative")
         counter = 0
-    
-
-text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", on_change=changed)
-text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", on_change=changed)
-text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", on_change=changed)
-text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", on_change=changed)
-text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4", on_change=changed)
-text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5", on_change=changed)
-text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6", on_change=changed)
+def day(blob, daynumber)
+    if blob > 0.1:
+        st.write(f"Your " + daynumber + " day is {blob * 100:.1f}%" + " Positive")
+    if blob < -0.1:
+        score = blob * -100
+        st.write(f"Your " + daynumber + " day is {score:.1f}% Negative")
+text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", on_change=changed, args=day)
 blob = TextBlob(text)
+text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1", on_change=changed)
 blob1 = TextBlob(text1)
+text2 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text2", on_change=changed)
 blob2 = TextBlob(text2)
+text3 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text3", on_change=changed)
 blob3 = TextBlob(text3)
+text4 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text4", on_change=changed)
 blob4 = TextBlob(text4)
+text5 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text5", on_change=changed)
 blob5 = TextBlob(text5)
+text6 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text6", on_change=changed)
 blob6 = TextBlob(text6)
 sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
 sentiment = sentimentaverage
