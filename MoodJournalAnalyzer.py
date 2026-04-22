@@ -1,8 +1,11 @@
 from textblob import TextBlob
 import streamlit as st
-
+st.set_page_config(
+    page_title="Mood Journal Analyzer" ,
+    page_icon="📖"
+)
 # Draw a title and some text to the app:
-title = st.title("Mood Journal Analyzer!")
+title = st.title("📖 Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?")
 text1 = st.text_input("Please enter a sentence about your day: ", placeholder="How was your day?", key="text1")
