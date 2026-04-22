@@ -5,10 +5,10 @@ st.set_page_config(
     page_icon="📖"
 )
 sidetitle = st.sidebar.title("Theme Customization 🖌️🎨")
-bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", "#ffffff")
-sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", "#ffffff")
-textcolorpick = st.sidebar.color_picker("• Choose a color for the text", "#ffffff")
-primarycolorpick = st.sidebar.color_picker("• Choose an accent color", "#ffffff")
+bgcolorpick = st.sidebar.color_picker("•  Choose a color for your background", "#ffffff")
+sidebgcolorpick = st.sidebar.color_picker("•  Choose a color for your sidebar background", "#ffffff")
+textcolorpick = st.sidebar.color_picker("•  Choose a color for the text", "#ffffff")
+primarycolorpick = st.sidebar.color_picker("•  Choose an accent color", "#ffffff")
 # Draw a title and some text to the app:
 title = st.title("📖 Mood Journal Analyzer!")
 
