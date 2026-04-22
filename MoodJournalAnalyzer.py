@@ -2,7 +2,8 @@ from textblob import TextBlob
 import streamlit as st
 st.set_page_config(
     page_title="Mood Journal Analyzer" ,
-    page_icon="📖"
+    page_icon="📖" ,
+    initial_sidebar_state="collapsed"
 )
 sidetitle = st.sidebar.title("Theme Customization 🖌️🎨")
 bgcolorpick = st.sidebar.color_picker("•  Choose a color for your background", "#ffffff")
