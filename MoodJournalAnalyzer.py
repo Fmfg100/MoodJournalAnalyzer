@@ -26,9 +26,6 @@ st.markdown(f"""
     }}
     </style>
     """, unsafe_allow_html=True)
-if st.sidebar.button("Reset App"):
-    for key in st.session_state.keys():
-        del st.session_state[key]
     st.rerun()
     if st.sidebar.button("Reset App"):
     st.session_state.bg_val = "#0e1117"
