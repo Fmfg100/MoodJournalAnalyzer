@@ -45,7 +45,7 @@ primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="ac
 
 st.sidebar.button("Dark Mode Default Theme", on_click=reset_everything)
 st.sidebar.button("Light Mode Default Theme", on_click=Light_Mode)
-
+    
 
 st.markdown(f"""
     <style>
@@ -100,6 +100,7 @@ st.title("Your week is")
 if sentimentaverage > 0.1:
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
     st.audio("mondayhopes-ordinary-day-8025.mp3", format="audio/mpeg")
+    st.audio.button("audio-Happy")
 elif sentimentaverage < -0.1:
     st.write(f"Negative: {sentimentaverage * -100:.1f}%")
 else:
