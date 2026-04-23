@@ -1,40 +1,40 @@
 from textblob import TextBlob
 import streamlit as st
 
-st.set_page_config(
+st.setpage(
     page_title="Mood Journal Analyzer!",
     page_icon="📖",
     initial_sidebar_state="collapsed"
 )
 
 # --- 1. THE RESET FUNCTION (Targeting White/Grey Theme) ---
-def reset_everything():
+def reseting():
     # These codes match the white/grey theme in your screenshot
-    st.session_state.bg_p = "#FFFFFF"
-    st.session_state.side_p = "#F0F2F6"
-    st.session_state.text_p = "#31333F"
-    st.session_state.accent_p = "#FF4B4B"
+    st.color.bg_p = "#FFFFFF"
+    st.color.side_p = "#F0F2F6"
+    st.color.text_p = "#31333F"
+    st.color.accent_p = "#FF4B4B"
     # Clear all text inputs
     for i in range(0, 7):
         k = "text" if i == 0 else f"text{i}"
-        st.session_state[k] = ""
+        st.color[k] = ""
 
 # --- 2. INITIALIZE SESSION STATE ---
-if "bg_p" not in st.session_state:
-    st.session_state.bg_p = "#FFFFFF"
-if "side_p" not in st.session_state:
-    st.session_state.side_p = "#F0F2F6"
-if "text_p" not in st.session_state:
-    st.session_state.text_p = "#31333F"
-if "accent_p" not in st.session_state:
-    st.session_state.accent_p = "#FF4B4B"
+if "bg_p" not in st.color:
+    st.color.bg_p = "#FFFFFF"
+if "side_p" not in st.color:
+    st.color.side_p = "#F0F2F6"
+if "text_p" not in st.color:
+    st.color.text_p = "#31333F"
+if "accent_p" not in st.color:
+    st.color.accent_p = "#FF4B4B"
 
 # --- 3. SIDEBAR ---
 st.sidebar.title("Theme Customization 🎨")
-bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", key="bg_p")
-sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", key="side_p")
-textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
-primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
+bgcolorpick = st.sidebar.colorchooser(" Choose a color for your background", key="bg_p")
+sidebgcolorpick = st.sidebar.colorchooser(" Choose a color for your sidebar background", key="side_p")
+textcolorpick = st.sidebar.colorchooser(" Choose a color for the text", key="text_p")
+primarycolorpick = st.sidebar.colorchooser(" Choose an accent color", key="accent_p")
 
 # Reset Button using the on_click callback to prevent the crash
 st.sidebar.button("Reset App", on_click=reset_everything)
@@ -42,7 +42,7 @@ st.sidebar.button("Reset App", on_click=reset_everything)
 # --- 4. APPLY THE COLORS (CSS) ---
 st.markdown(f"""
     <style>
-    .stApp {{ background-color: {bgcolorpick}; }}
+    .stApp {{ backgroundcolor: {bgcolorpick}; }}
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
     .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
     button, [data-baseweb="button"] {{ 
