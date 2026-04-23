@@ -100,7 +100,8 @@ st.title("Your week is")
 if sentimentaverage > 0.1:
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
     st.audio("lemonmusiclab-happy-kids-516337.mp3", format="audio/mpeg")
- st.sidebar.button("audio", on_click=Light_Mode)("audio-Happy")
+ st.sidebar.button("audio", on_click=audio)
+
 elif sentimentaverage < -0.1:
     st.write(f"Negative: {sentimentaverage * -100:.1f}%")
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
