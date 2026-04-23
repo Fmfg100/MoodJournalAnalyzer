@@ -10,6 +10,22 @@ bgcolorpick = st.sidebar.color_picker("•  Choose a color for your background",
 sidebgcolorpick = st.sidebar.color_picker("•  Choose a color for your sidebar background", "#262730")
 textcolorpick = st.sidebar.color_picker("•  Choose a color for the text", "#fafafa")
 primarycolorpick = st.sidebar.color_picker("•  Choose an accent color", "#ff4b4b")
+st.markdown(f"""
+    <style>
+    .stApp {{
+        background-color: {bgcolorpick};
+    }}
+    section[data-testid="stSidebar"] {{
+        background-color: {sidebgcolorpick} !important;
+    }}
+    .stApp, p, h1, h2, h3, label, span {{
+        color: {textcolorpick} !important;
+    }}
+    button, [data-baseweb="button"] {{
+        background-color: {primarycolorpick} !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
 # Draw a title and some text to the app:
 title = st.title(" Mood Journal Analyzer!")
 
