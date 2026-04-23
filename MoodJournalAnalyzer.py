@@ -30,6 +30,16 @@ if st.sidebar.button("Reset App"):
     for key in st.session_state.keys():
         del st.session_state[key]
     st.rerun()
+    if st.sidebar.button("Reset App"):
+    st.session_state.bg_val = "#0e1117"
+    st.session_state.side_val = "#262730"
+    st.session_state.text_val = "#fafafa"
+    st.session_state.accent_val = "#ff4b4b"
+    # Clear text inputs
+    for key in ["text1", "text2", "text3", "text4", "text5", "text6"]:
+        if key in st.session_state:
+            st.session_state[key] = ""
+    st.rerun()
 # Draw a title and some text to the app:
 title = st.title(" Mood Journal Analyzer!")
 
