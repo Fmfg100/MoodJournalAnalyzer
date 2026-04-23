@@ -16,6 +16,16 @@ def reset_everything():
     for i in range(0, 7):
         k = "text" if i == 0 else f"text{i}"
         st.session_state[k] = ""
+
+def Light_Mode():
+    st.session_state.bg_p = "##FFFFFF"
+    st.session_state.side_p = "#F0F2F6"
+    st.session_state.text_p = "#262730"
+    st.session_state.accent_p = "#FF4B4B"
+ 
+    for i in range(0, 7):
+        k = "text" if i == 0 else f"text{i}"
+        st.session_state[k] = ""
         
 if "bg_p" not in st.session_state:
     st.session_state.bg_p = "#0e1117"
@@ -34,14 +44,15 @@ textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
 
-st.sidebar.button("Reset App", on_click=reset_everything)
+st.sidebar.button("Dark Mode", on_click=reset_everything)
+st.sidebar.button("Light Mode", on_click=Light_Mode)
 
 
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bgcolorpick}; }}
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
-    .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
+    .stApp, p, h1, h2, h3, span {{ color: {textcolorpick} !important; }}
     button, [data-baseweb="button"] {{ 
         background-color: {primarycolorpick} !important; 
         color: white !important; 
