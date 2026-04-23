@@ -7,101 +7,69 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. SESSION STATE INITIALIZATION ---
-# These are your "beginning" colors
-if "bg_val" not in st.session_state:
-    st.session_state.bg_val = "#0E1117"
-if "side_val" not in st.session_state:
-    st.session_state.side_val = "#262730"
-if "text_val" not in st.session_state:
-    st.session_state.text_val = "#FAFAFA"
-if "accent_val" not in st.session_state:
-    st.session_state.accent_val = "#FF4B4B"
+# 1. Setup Session State for the values
+if "bg" not in st.session_state:
+    st.session_state.bg = "#0E1117"
+if "side" not in st.session_state:
+    st.session_state.side = "#262730"
+if "text" not in st.session_state:
+    st.session_state.text = "#FAFAFA"
+if "accent" not in st.session_state:
+    st.session_state.accent = "#FF4B4B"
 
-# --- 2. SIDEBAR CUSTOMIZATION ---
-st.sidebar.title("Theme Customization 🎨")
-
-# We link the pickers to the session_state values
-bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", st.session_state.bg_val, key="bg_p")
-sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", st.session_state.side_val, key="side_p")
-textcolorpick = st.sidebar.color_picker("• Choose a color for the text", st.session_state.text_val, key="text_p")
-primarycolorpick = st.sidebar.color_picker("• Choose an accent color", st.session_state.accent_val, key="accent_p")
-
-# --- 3. RESET LOGIC ---
+# 2. Reset Button Logic
 if st.sidebar.button("Reset App"):
-    # Force state back to original hex codes
-    st.session_state.bg_val = "#0E1117"
-    st.session_state.side_val = "#262730"
-    st.session_state.text_val = "#FAFAFA"
-    st.session_state.accent_val = "#FF4B4B"
-    
+    st.session_state.bg = "#0E1117"
+    st.session_state.side = "#262730"
+    st.session_state.text = "#FAFAFA"
+    st.session_state.accent = "#FF4B4B"
     # Clear text inputs
     for i in range(1, 7):
-        key = f"text{i}"
-        if key in st.session_state:
-            st.session_state[key] = ""
-    
-    # Rerun to apply the changes immediately
+        st.session_state[f"text{i}"] = ""
     st.rerun()
 
-# --- 4. APPLY THE COLORS ---
+# 3. Sidebar Pickers - Linked to session_state
+bgcolorpick = st.sidebar.color_picker("• Background", st.session_state.bg, key="bg_picker")
+sidebgcolorpick = st.sidebar.color_picker("• Sidebar", st.session_state.side, key="side_picker")
+textcolorpick = st.sidebar.color_picker("• Text", st.session_state.text, key="text_picker")
+primarycolorpick = st.sidebar.color_picker("• Accent", st.session_state.accent, key="accent_picker")
+
+# 4. Apply CSS
 st.markdown(f"""
     <style>
-    .stApp {{
-        background-color: {bgcolorpick};
-    }}
-    section[data-testid="stSidebar"] {{
-        background-color: {sidebgcolorpick} !important;
-    }}
-    .stApp, p, h1, h2, h3, label, span {{
-        color: {textcolorpick} !important;
-    }}
-    button, [data-baseweb="button"] {{
-        background-color: {primarycolorpick} !important;
-        color: white !important;
-    }}
+    .stApp {{ background-color: {bgcolorpick}; }}
+    section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
+    .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
+    button, [data-baseweb="button"] {{ background-color: {primarycolorpick} !important; }}
     </style>
     """, unsafe_allow_html=True)
 
-# --- 5. APP CONTENT ---
+# 5. App Content
 st.title("📖 Mood Journal Analyzer!")
 
-text = st.text_input("Please enter a sentence about your mood in Sunday: ", placeholder="How was your day?")
-text1 = st.text_input("Please enter a sentence about your mood in Monday: ", placeholder="How was your day?", key="text1")
-text2 = st.text_input("Please enter a sentence about your mood in Tuesday: ", placeholder="How was your day?", key="text2")
-text3 = st.text_input("Please enter a sentence about your mood in Wednesday: ", placeholder="How was your day?", key="text3")
-text4 = st.text_input("Please enter a sentence about your mood in Thursday: ", placeholder="How was your day?", key="text4")
-text5 = st.text_input("Please enter a sentence about your mood in Friday: ", placeholder="How was your day?", key="text5")
-text6 = st.text_input("Please enter a sentence about your mood in Saturday: ", placeholder="How was your day?", key="text6")
+# Use keys for ALL text inputs so they can be reset
+text0 = st.text_input("Sunday:", placeholder="How was your day?", key="text0")
+text1 = st.text_input("Monday:", placeholder="How was your day?", key="text1")
+text2 = st.text_input("Tuesday:", placeholder="How was your day?", key="text2")
+text3 = st.text_input("Wednesday:", placeholder="How was your day?", key="text3")
+text4 = st.text_input("Thursday:", placeholder="How was your day?", key="text4")
+text5 = st.text_input("Friday:", placeholder="How was your day?", key="text5")
+text6 = st.text_input("Saturday:", placeholder="How was your day?", key="text6")
 
 # Analysis Logic
-blob = TextBlob(text)
-blob1 = TextBlob(text1)
-blob2 = TextBlob(text2)
-blob3 = TextBlob(text3)
-blob4 = TextBlob(text4)
-blob5 = TextBlob(text5)
-blob6 = TextBlob(text6)
+all_texts = [text0, text1, text2, text3, text4, text5, text6]
+polarities = []
 
-all_blobs_together = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
+for t in all_texts:
+    b = TextBlob(t)
+    p = b.sentiment.polarity
+    polarities.append(p)
+    if p > 0.1: st.write(f"Positive ({p*100:.1f}%)")
+    elif p < -0.1: st.write(f"Negative ({p*-100:.1f}%)")
+    else: st.write("Neutral")
 
-for b in all_blobs_together:
-    day = b.sentiment.polarity
-    if day > 0.1:
-        st.write(f"Your day is {day * 100:.1f}% Positive")
-    elif day < -0.1:
-        st.write(f"Your day is {day * -100:.1f}% Negative")
-    else:
-        st.write("Your day is Neutral")
-
-# Weekly Analysis
-sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
-
+avg = sum(polarities) / 7
 st.title("Your week is")
-
-if sentimentaverage > 0.1:
-    st.write(f"Positive: {sentimentaverage * 100:.1f}%")
-elif sentimentaverage < -0.1:
-    st.write(f"Negative: {sentimentaverage * -100:.1f}%")
-else:
-    st.write("Neutral")
+if avg > 0.1: st.write(f"Positive: {avg*100:.1f}%")
+elif avg < -0.1: st.write(f"Negative: {avg*-100:.1f}%")
+else: st.write("Neutral")
