@@ -7,55 +7,48 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. INITIALIZE SESSION STATE WITH WHITE/GREY THEME ---
+# --- COLOR LOGIC: Makes the reset button work ---
 if "bg_p" not in st.session_state:
-    st.session_state.bg_p = "#FFFFFF"
+    st.session_state.bg_p = "#0e1117"
 if "side_p" not in st.session_state:
-    st.session_state.side_p = "#F0F2F6"
+    st.session_state.side_p = "#262730"
 if "text_p" not in st.session_state:
-    st.session_state.text_p = "#31333F"
+    st.session_state.text_p = "#fafafa"
 if "accent_p" not in st.session_state:
-    st.session_state.accent_p = "#FF4B4B"
+    st.session_state.accent_p = "#ff4b4b"
 
-# --- 2. RESET LOGIC ---
-if st.sidebar.button("Reset App"):
-    # Updated these to reset to the White/Grey colors you wanted
-    st.session_state.bg_p = "#FFFFFF"
-    st.session_state.side_p = "#F0F2F6"
-    st.session_state.text_p = "#31333F"
-    st.session_state.accent_p = "#FF4B4B"
-    
-    # Reset all text inputs (0 through 6)
-    for i in range(0, 7):
-        key = f"text{i}"
-        if key in st.session_state:
-            st.session_state[key] = ""
-    st.rerun()
-
-# --- 3. SIDEBAR PICKERS ---
+# --- SIDEBAR ---
+sidetitle = st.sidebar.title("Theme Customization 🎨")
 bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", key="bg_p")
 sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", key="side_p")
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
-# --- 4. APPLY COLORS ---
+# --- RESET BUTTON ---
+if st.sidebar.button("Reset App"):
+    st.session_state.bg_p = "#0e1117"
+    st.session_state.side_p = "#262730"
+    st.session_state.text_p = "#fafafa"
+    st.session_state.accent_p = "#ff4b4b"
+    # Resets text inputs
+    for i in range(0, 7):
+        st.session_state[f"text{i}"] = ""
+    st.rerun()
+
+# --- CSS: Applies the colors ---
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bgcolorpick}; }}
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
     .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
     button, [data-baseweb="button"] {{ background-color: {primarycolorpick} !important; color: white !important; }}
-    /* Input field styling */
-    .stTextInput>div>div>input {{
-        background-color: #F0F2F6;
-        color: #31333F;
-    }}
     </style>
     """, unsafe_allow_html=True)
 
-# --- 5. APP CONTENT ---
-st.title(" Mood Journal Analyzer!")
+# --- YOUR ORIGINAL CONTENT ---
+title = st.title(" Mood Journal Analyzer!")
 
+# Note: Added key="text0" to Sunday so the reset button can clear it
 text = st.text_input("Please enter a sentence about your mood in Sunday: ", placeholder="How was your day?", key="text0")
 text1 = st.text_input("Please enter a sentence about your mood in Monday: ", placeholder="How was your day?", key="text1")
 text2 = st.text_input("Please enter a sentence about your mood in Tuesday: ", placeholder="How was your day?", key="text2")
@@ -64,27 +57,34 @@ text4 = st.text_input("Please enter a sentence about your mood in Thursday: ", p
 text5 = st.text_input("Please enter a sentence about your mood in Friday: ", placeholder="How was your day?", key="text5")
 text6 = st.text_input("Please enter a sentence about your mood in Saturday: ", placeholder="How was your day?", key="text6")
 
-# Analysis Logic
-all_inputs = [text, text1, text2, text3, text4, text5, text6]
-all_blobs = [TextBlob(t) for t in all_inputs]
+blob = TextBlob(text)
+blob1 = TextBlob(text1)
+blob2 = TextBlob(text2)
+blob3 = TextBlob(text3)
+blob4 = TextBlob(text4)
+blob5 = TextBlob(text5)
+blob6 = TextBlob(text6)
 
-for i, b in enumerate(all_blobs):
-    if all_inputs[i]: # Only analyze if user typed something
-        day = b.sentiment.polarity
-        if day > 0.1:
-            st.write(f"Your day is {day * 100:.1f}% Positive")
-        elif day < -0.1:
-            st.write(f"Your day is {day * -100:.1f}% Negative")
-        else:
-            st.write("Your day is Neutral")
+# --- DAILY ANALYSIS SECTION ---
+all_blobs_together = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
 
-# Weekly Analysis
-if any(all_inputs):
-    sentimentaverage = sum([b.sentiment.polarity for b in all_blobs]) / 7
-    st.title("Your week is")
-    if sentimentaverage > 0.1:
-        st.write(f"Positive: {sentimentaverage * 100:.1f}%")
-    elif sentimentaverage < -0.1:
-        st.write(f"Negative: {sentimentaverage * -100:.1f}%")
+for b in all_blobs_together:
+    day = b.sentiment.polarity
+    if day > 0.1:
+        st.write(f"Your day is {day * 100:.1f}% Positive")
+    elif day < -0.1:
+        st.write(f"Your day is {day * -100:.1f}% Negative")
     else:
-        st.write("Neutral")
+        st.write("Your day is Neutral")
+
+# --- WEEKLY ANALYSIS SECTION ---
+sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
+
+st.title("Your week is")
+
+if sentimentaverage > 0.1:
+    st.write(f"Positive: {sentimentaverage * 100:.1f}%")
+elif sentimentaverage < -0.1:
+    st.write(f"Negative: {sentimentaverage * -100:.1f}%")
+else:
+    st.write("Neutral")
