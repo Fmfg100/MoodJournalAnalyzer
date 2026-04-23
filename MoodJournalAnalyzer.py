@@ -18,11 +18,11 @@ def reset_everything():
         st.session_state[k] = ""
         
 if "bg_p" not in st.session_state:
-    st.session_state.bg_p = "#FFFFFF"
+    st.session_state.bg_p = "#0e1117"
 if "side_p" not in st.session_state:
-    st.session_state.side_p = "#F0F2F6"
+    st.session_state.side_p = "#262730"
 if "text_p" not in st.session_state:
-    st.session_state.text_p = "#31333F"
+    st.session_state.text_p = "#fafafa"
 if "accent_p" not in st.session_state:
     st.session_state.accent_p = "#FF4B4B"
 
