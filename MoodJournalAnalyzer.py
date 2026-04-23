@@ -8,15 +8,15 @@ st.set_page_config(
 )
 
 # --- 1. SESSION STATE INITIALIZATION ---
-# This ensures colors can be reset back to defaults
+# Set to the specific hex codes from your screenshots
 if "bg_val" not in st.session_state:
-    st.session_state.bg_val = "#0e1117"
+    st.session_state.bg_val = "#0E1117"
 if "side_val" not in st.session_state:
     st.session_state.side_val = "#262730"
 if "text_val" not in st.session_state:
-    st.session_state.text_val = "#fafafa"
+    st.session_state.text_val = "#FAFAFA"
 if "accent_val" not in st.session_state:
-    st.session_state.accent_val = "#ff4b4b"
+    st.session_state.accent_val = "#FF4B4B"
 
 # --- 2. SIDEBAR CUSTOMIZATION ---
 st.sidebar.title("Theme Customization 🎨")
@@ -28,18 +28,17 @@ primarycolorpick = st.sidebar.color_picker("• Choose an accent color", st.sess
 
 # --- 3. RESET LOGIC ---
 if st.sidebar.button("Reset App"):
-    # Reset color values in session state
-    st.session_state.bg_val = "#0e1117"
+    # Reset to the exact colors from your screenshots
+    st.session_state.bg_val = "#0E1117"
     st.session_state.side_val = "#262730"
-    st.session_state.text_val = "#fafafa"
-    st.session_state.accent_val = "#ff4b4b"
+    st.session_state.text_val = "#FAFAFA"
+    st.session_state.accent_val = "#FF4B4B"
     
     # Clear text input keys
     for i in range(1, 7):
         key = f"text{i}"
         if key in st.session_state:
             st.session_state[key] = ""
-    # Main Sunday text has no key in your original code, so we use st.rerun() to refresh the UI defaults
     st.rerun()
 
 # --- 4. APPLY THE COLORS ---
