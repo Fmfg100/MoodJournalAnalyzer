@@ -18,7 +18,7 @@ def reset_everything():
         st.session_state[k] = ""
 
 def Light_Mode():
-    st.session_state.bg_p = "##FFFFFF"
+    st.session_state.bg_p = "#FFFFFF"
     st.session_state.side_p = "#F0F2F6"
     st.session_state.text_p = "#262730"
     st.session_state.accent_p = "#FF4B4B"
