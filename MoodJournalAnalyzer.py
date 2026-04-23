@@ -13,7 +13,7 @@ primarycolorpick = st.sidebar.color_picker("•  Choose an accent color", "#ff4b
 st.markdown(f"""
     <style>
     .stApp {{
-        background-color: {bg_color};
+    background-color: {bg_color};
     }}
     section[data-testid="stSidebar"] {{
         background-color: {sb_color} !important;
