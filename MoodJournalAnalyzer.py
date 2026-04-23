@@ -99,6 +99,7 @@ sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.s
 st.title("Your week is")
 if sentimentaverage > 0.1:
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
+    st.audio()
 elif sentimentaverage < -0.1:
     st.write(f"Negative: {sentimentaverage * -100:.1f}%")
 else:
