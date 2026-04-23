@@ -1,35 +1,15 @@
 from textblob import TextBlob
 import streamlit as st
 st.set_page_config(
-page_title="Mood Journal Analyzer!" ,
-page_icon="📖" ,
-initial_sidebar_state="collapsed"
+    page_title="Mood Journal Analyzer!" ,
+    page_icon="📖" ,
+    initial_sidebar_state="collapsed"
 )
 sidetitle = st.sidebar.title("Theme Customization 🎨")
 bgcolorpick = st.sidebar.color_picker("•  Choose a color for your background", "#0e1117")
 sidebgcolorpick = st.sidebar.color_picker("•  Choose a color for your sidebar background", "#262730")
 textcolorpick = st.sidebar.color_picker("•  Choose a color for the text", "#fafafa")
 primarycolorpick = st.sidebar.color_picker("•  Choose an accent color", "#ff4b4b")
-st.markdown(f"""
-   <style>
-   .stApp {{
-       background-color: {bgcolorpick};
-   }}
-   section[data-testid="stSidebar"] {{
-       background-color: {sidebgcolorpick} !important;
-   }}
-   .stApp, p, h1, h2, h3, label, span {{
-       color: {textcolorpick} !important;
-   }}
-   button, [data-baseweb="button"] {{
-       background-color: {primarycolorpick} !important;
-   }}
-   </style>
-   """, unsafe_allow_html=True)
-if st.sidebar.button("Reset App"):
-    for key in st.session_state.keys():
-        del st.session_state[key]
-    st.rerun()
 # Draw a title and some text to the app:
 title = st.title(" Mood Journal Analyzer!")
 
@@ -54,14 +34,14 @@ blob6 = TextBlob(text6)
 all_blobs_together = [blob, blob1, blob2, blob3, blob4, blob5, blob6]
 
 for b in all_blobs_together:
-day = b.sentiment.polarity
-# Very simple if conditions
-if day > 0.1:
-st.write(f"Your day is {day * 100:.1f}% Positive")
-elif day < -0.1:
-st.write(f"Your day is {day * -100:.1f}% Negative")
-else:
-st.write("Your day is Neutral")
+    day = b.sentiment.polarity
+    # Very simple if conditions
+    if day > 0.1:
+        st.write(f"Your day is {day * 100:.1f}% Positive")
+    elif day < -0.1:
+        st.write(f"Your day is {day * -100:.1f}% Negative")
+    else:
+        st.write("Your day is Neutral")
 
 # --- WEEKLY ANALYSIS SECTION ---
 sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.sentiment.polarity + blob3.sentiment.polarity + blob4.sentiment.polarity + blob5.sentiment.polarity + blob6.sentiment.polarity) / 7
@@ -70,8 +50,8 @@ st.title("Your week is")
 
 # Simplified Weekly Logic
 if sentimentaverage > 0.1:
-st.write(f"Positive: {sentimentaverage * 100:.1f}%")
+    st.write(f"Positive: {sentimentaverage * 100:.1f}%")
 elif sentimentaverage < -0.1:
-st.write(f"Negative: {sentimentaverage * -100:.1f}%")
+    st.write(f"Negative: {sentimentaverage * -100:.1f}%")
 else:
-st.write("Neutral")
+    st.write("Neutral")
