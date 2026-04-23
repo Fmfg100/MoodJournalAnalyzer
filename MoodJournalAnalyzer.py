@@ -44,8 +44,8 @@ textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
 
-st.sidebar.button("Dark Mode", on_click=reset_everything)
-st.sidebar.button("Light Mode", on_click=Light_Mode)
+st.sidebar.button("Dark Mode Default Theme", on_click=reset_everything)
+st.sidebar.button("Light Mode Default Theme", on_click=Light_Mode)
 
 
 st.markdown(f"""
