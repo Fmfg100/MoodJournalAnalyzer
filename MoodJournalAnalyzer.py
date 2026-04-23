@@ -7,8 +7,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. RESET FUNCTION (Sets the EXACT colors from your screenshots) ---
+# --- 1. THE RESET FUNCTION ---
 def reset_everything():
+    # These are the dark theme hex codes from your original screenshots
     st.session_state.bg_p = "#0E1117"
     st.session_state.side_p = "#262730"
     st.session_state.text_p = "#FAFAFA"
@@ -38,13 +39,30 @@ primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="ac
 # Reset Button using the callback to prevent the crash
 st.sidebar.button("Reset App", on_click=reset_everything)
 
-# --- 4. APPLY THE COLORS ---
+# --- 4. APPLY THE COLORS (Includes Input Styling) ---
 st.markdown(f"""
     <style>
+    /* Main Background */
     .stApp {{ background-color: {bgcolorpick}; }}
+    
+    /* Sidebar */
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
+    
+    /* Global Text */
     .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
-    button, [data-baseweb="button"] {{ background-color: {primarycolorpick} !important; color: white !important; }}
+    
+    /* Buttons */
+    button, [data-baseweb="button"] {{ 
+        background-color: {primarycolorpick} !important; 
+        color: white !important; 
+    }}
+    
+    /* Fix for Text Inputs to match the dark theme */
+    .stTextInput>div>div>input {{
+        background-color: #262730 !important;
+        color: #FAFAFA !important;
+        border: 1px solid #4B4B4B !important;
+    }}
     </style>
     """, unsafe_allow_html=True)
 
