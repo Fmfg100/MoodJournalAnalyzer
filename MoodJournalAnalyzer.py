@@ -99,9 +99,12 @@ sentimentaverage = (blob.sentiment.polarity + blob1.sentiment.polarity + blob2.s
 st.title("Your week is")
 if sentimentaverage > 0.1:
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
-    st.audio("mondayhopes-ordinary-day-8025.mp3", format="audio/mpeg")
+    st.audio("lemonmusiclab-happy-kids-516337.mp3", format="audio/mpeg")
     st.audio.button("audio-Happy")
 elif sentimentaverage < -0.1:
     st.write(f"Negative: {sentimentaverage * -100:.1f}%")
+    st.write(f"Positive: {sentimentaverage * 100:.1f}%")
 else:
     st.write("Neutral")
+     st.audio("mondayhopes-ordinary-day-8025.mp3", format="audio/mpeg")
+    st.audio.button("audio-Normal")
