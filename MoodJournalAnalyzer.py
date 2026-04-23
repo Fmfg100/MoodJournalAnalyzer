@@ -106,5 +106,3 @@ elif sentimentaverage < -0.1:
     st.write(f"Positive: {sentimentaverage * 100:.1f}%")
 else:
     st.write("Neutral")
-     st.audio("mondayhopes-ordinary-day-8025.mp3", format="audio/mpeg")
-    st.audio.button("audio-Normal")
