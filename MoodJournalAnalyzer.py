@@ -8,19 +8,20 @@ st.set_page_config(
 )
 
 # --- 1. SESSION STATE INITIALIZATION ---
-# This ensures colors can be reset back to defaults
+# These are your "beginning" colors
 if "bg_val" not in st.session_state:
-    st.session_state.bg_val = "#0e1117"
+    st.session_state.bg_val = "#0E1117"
 if "side_val" not in st.session_state:
     st.session_state.side_val = "#262730"
 if "text_val" not in st.session_state:
-    st.session_state.text_val = "#fafafa"
+    st.session_state.text_val = "#FAFAFA"
 if "accent_val" not in st.session_state:
-    st.session_state.accent_val = "#ff4b4b"
+    st.session_state.accent_val = "#FF4B4B"
 
 # --- 2. SIDEBAR CUSTOMIZATION ---
 st.sidebar.title("Theme Customization 🎨")
 
+# We link the pickers to the session_state values
 bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", st.session_state.bg_val, key="bg_p")
 sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", st.session_state.side_val, key="side_p")
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", st.session_state.text_val, key="text_p")
@@ -28,18 +29,19 @@ primarycolorpick = st.sidebar.color_picker("• Choose an accent color", st.sess
 
 # --- 3. RESET LOGIC ---
 if st.sidebar.button("Reset App"):
-    # Reset color values in session state
-    st.session_state.bg_val = "#0e1117"
+    # Force state back to original hex codes
+    st.session_state.bg_val = "#0E1117"
     st.session_state.side_val = "#262730"
-    st.session_state.text_val = "#fafafa"
-    st.session_state.accent_val = "#ff4b4b"
+    st.session_state.text_val = "#FAFAFA"
+    st.session_state.accent_val = "#FF4B4B"
     
-    # Clear text input keys
+    # Clear text inputs
     for i in range(1, 7):
         key = f"text{i}"
         if key in st.session_state:
             st.session_state[key] = ""
-    # Main Sunday text has no key in your original code, so we use st.rerun() to refresh the UI defaults
+    
+    # Rerun to apply the changes immediately
     st.rerun()
 
 # --- 4. APPLY THE COLORS ---
