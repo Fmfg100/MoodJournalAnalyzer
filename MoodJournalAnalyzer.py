@@ -7,8 +7,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. INITIALIZE COLORS ---
-# This block prevents the error by setting initial values only if they don't exist
+# --- 1. INITIALIZE COLORS (Required for Reset) ---
+# This check prevents the crash you saw in your screenshot
 if "bg_p" not in st.session_state:
     st.session_state.bg_p = "#0e1117"
 if "side_p" not in st.session_state:
@@ -18,23 +18,23 @@ if "text_p" not in st.session_state:
 if "accent_p" not in st.session_state:
     st.session_state.accent_p = "#ff4b4b"
 
-# --- 2. SIDEBAR & RESET LOGIC ---
+# --- 2. SIDEBAR & RESET BUTTON ---
 sidetitle = st.sidebar.title("Theme Customization 🎨")
 
-# We use the 'key' to link these directly to the session_state values above
+# Link pickers to the session state using the 'key'
 bgcolorpick = st.sidebar.color_picker("• Choose a color for your background", key="bg_p")
 sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar background", key="side_p")
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
 if st.sidebar.button("Reset App"):
-    # Updating these keys will now automatically update the color pickers
+    # Updating the keys directly forces the widgets to change
     st.session_state.bg_p = "#0e1117"
     st.session_state.side_p = "#262730"
     st.session_state.text_p = "#fafafa"
     st.session_state.accent_p = "#ff4b4b"
     
-    # Clears your text inputs
+    # Clears text inputs
     for i in range(0, 7):
         input_key = "text" if i == 0 else f"text{i}"
         if input_key in st.session_state:
@@ -54,7 +54,7 @@ st.markdown(f"""
 # --- 4. YOUR ORIGINAL CONTENT ---
 title = st.title(" Mood Journal Analyzer!")
 
-# Note: Added key="text" to the first one so the reset button can find it
+# Every input needs a key for the reset button to work
 text = st.text_input("Please enter a sentence about your mood in Sunday: ", placeholder="How was your day?", key="text")
 text1 = st.text_input("Please enter a sentence about your mood in Monday: ", placeholder="How was your day?", key="text1")
 text2 = st.text_input("Please enter a sentence about your mood in Tuesday: ", placeholder="How was your day?", key="text2")
