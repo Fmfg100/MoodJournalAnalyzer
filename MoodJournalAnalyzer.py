@@ -7,16 +7,18 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# --- 1. THE RESET FUNCTION ---
 def reset_everything():
+    # Back to the white and grey theme
     st.session_state.bg_p = "#FFFFFF"
     st.session_state.side_p = "#F0F2F6"
     st.session_state.text_p = "#31333F"
     st.session_state.accent_p = "#FF4B4B"
- 
     for i in range(0, 7):
         k = "text" if i == 0 else f"text{i}"
         st.session_state[k] = ""
-        
+
+# --- 2. INITIALIZE SESSION STATE ---
 if "bg_p" not in st.session_state:
     st.session_state.bg_p = "#FFFFFF"
 if "side_p" not in st.session_state:
@@ -33,28 +35,36 @@ sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar b
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
-
 st.sidebar.button("Reset App", on_click=reset_everything)
 
-
+# --- 4. APPLY THE COLORS (FIXED CSS) ---
 st.markdown(f"""
     <style>
+    /* Main Background */
     .stApp {{ background-color: {bgcolorpick}; }}
+    
+    /* Sidebar */
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
+    
+    /* Global Text */
     .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
+    
+    /* Buttons */
     button, [data-baseweb="button"] {{ 
         background-color: {primarycolorpick} !important; 
         color: white !important; 
     }}
-    /* Keeps input fields light grey as seen in your screenshot */
+    
+    /* DYNAMIC INPUT BOXES: Now they change with your pickers! */
     .stTextInput>div>div>input {{
-        background-color: #F0F2F6 !important;
-        color: #31333F !important;
+        background-color: {sidebgcolorpick} !important;
+        color: {textcolorpick} !important;
+        border: 1px solid {primarycolorpick} !important;
     }}
     </style>
     """, unsafe_allow_html=True)
 
-
+# --- 5. YOUR CONTENT ---
 st.title(" Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your mood in Sunday: ", placeholder="How was your day?", key="text")
