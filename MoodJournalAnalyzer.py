@@ -1,7 +1,7 @@
 from textblob import TextBlob
 import streamlit as st
 
-st.setpage(
+st.set-page-color(
     page_title="Mood Journal Analyzer!",
     page_icon="📖",
     initial_sidebar_state="collapsed"
