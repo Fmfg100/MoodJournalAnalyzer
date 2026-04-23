@@ -7,12 +7,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. THE RESET FUNCTION ---
+# --- 1. THE RESET FUNCTION (Targeting White/Grey Theme) ---
 def reset_everything():
-    # These are the dark theme hex codes from your original screenshots
-    st.session_state.bg_p = "#0E1117"
-    st.session_state.side_p = "#262730"
-    st.session_state.text_p = "#FAFAFA"
+    # These codes match the white/grey theme in your screenshot
+    st.session_state.bg_p = "#FFFFFF"
+    st.session_state.side_p = "#F0F2F6"
+    st.session_state.text_p = "#31333F"
     st.session_state.accent_p = "#FF4B4B"
     # Clear all text inputs
     for i in range(0, 7):
@@ -21,11 +21,11 @@ def reset_everything():
 
 # --- 2. INITIALIZE SESSION STATE ---
 if "bg_p" not in st.session_state:
-    st.session_state.bg_p = "#0E1117"
+    st.session_state.bg_p = "#FFFFFF"
 if "side_p" not in st.session_state:
-    st.session_state.side_p = "#262730"
+    st.session_state.side_p = "#F0F2F6"
 if "text_p" not in st.session_state:
-    st.session_state.text_p = "#FAFAFA"
+    st.session_state.text_p = "#31333F"
 if "accent_p" not in st.session_state:
     st.session_state.accent_p = "#FF4B4B"
 
@@ -36,32 +36,23 @@ sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar b
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
-# Reset Button using the callback to prevent the crash
+# Reset Button using the on_click callback to prevent the crash
 st.sidebar.button("Reset App", on_click=reset_everything)
 
-# --- 4. APPLY THE COLORS (Includes Input Styling) ---
+# --- 4. APPLY THE COLORS (CSS) ---
 st.markdown(f"""
     <style>
-    /* Main Background */
     .stApp {{ background-color: {bgcolorpick}; }}
-    
-    /* Sidebar */
     section[data-testid="stSidebar"] {{ background-color: {sidebgcolorpick} !important; }}
-    
-    /* Global Text */
     .stApp, p, h1, h2, h3, label, span {{ color: {textcolorpick} !important; }}
-    
-    /* Buttons */
     button, [data-baseweb="button"] {{ 
         background-color: {primarycolorpick} !important; 
         color: white !important; 
     }}
-    
-    /* Fix for Text Inputs to match the dark theme */
+    /* Keeps input fields light grey as seen in your screenshot */
     .stTextInput>div>div>input {{
-        background-color: #262730 !important;
-        color: #FAFAFA !important;
-        border: 1px solid #4B4B4B !important;
+        background-color: #F0F2F6 !important;
+        color: #31333F !important;
     }}
     </style>
     """, unsafe_allow_html=True)
