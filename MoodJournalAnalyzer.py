@@ -3,7 +3,6 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Mood Journal Analyzer!",
-    page_icon="📖",
     initial_sidebar_state="collapsed"
 )
 
