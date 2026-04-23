@@ -26,6 +26,10 @@ st.markdown(f"""
     }}
     </style>
     """, unsafe_allow_html=True)
+if st.sidebar.button("Reset App"):
+    for key in st.session_state.keys():
+        del st.session_state[key]
+    st.rerun()
 # Draw a title and some text to the app:
 title = st.title(" Mood Journal Analyzer!")
 
