@@ -7,19 +7,16 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 1. THE RESET FUNCTION (Targeting White/Grey Theme) ---
 def reset_everything():
-    # These codes match the white/grey theme in your screenshot
     st.session_state.bg_p = "#FFFFFF"
     st.session_state.side_p = "#F0F2F6"
     st.session_state.text_p = "#31333F"
     st.session_state.accent_p = "#FF4B4B"
-    # Clear all text inputs
+ 
     for i in range(0, 7):
         k = "text" if i == 0 else f"text{i}"
         st.session_state[k] = ""
-
-# --- 2. INITIALIZE SESSION STATE ---
+        
 if "bg_p" not in st.session_state:
     st.session_state.bg_p = "#FFFFFF"
 if "side_p" not in st.session_state:
@@ -36,10 +33,10 @@ sidebgcolorpick = st.sidebar.color_picker("• Choose a color for your sidebar b
 textcolorpick = st.sidebar.color_picker("• Choose a color for the text", key="text_p")
 primarycolorpick = st.sidebar.color_picker("• Choose an accent color", key="accent_p")
 
-# Reset Button using the on_click callback to prevent the crash
+
 st.sidebar.button("Reset App", on_click=reset_everything)
 
-# --- 4. APPLY THE COLORS (CSS) ---
+
 st.markdown(f"""
     <style>
     .stApp {{ background-color: {bgcolorpick}; }}
@@ -57,7 +54,7 @@ st.markdown(f"""
     </style>
     """, unsafe_allow_html=True)
 
-# --- 5. YOUR ORIGINAL CONTENT ---
+
 st.title(" Mood Journal Analyzer!")
 
 text = st.text_input("Please enter a sentence about your mood in Sunday: ", placeholder="How was your day?", key="text")
